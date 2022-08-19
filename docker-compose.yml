@@ -9,7 +9,7 @@ services:
     volumes:
       ./:/app
 
-  mysql:
+  mysqldb:
     image: mysql
     ports:
       3306:3306
