@@ -86,7 +86,6 @@ def db_init():
     cursor.execute("CREATE TABLE pictures (title VARCHAR(255), price INTEGER, "
                    "active BOOLEAN, description VARCHAR(255))")
     cursor.close()
-
     return 'init database'
 
 
