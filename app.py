@@ -85,7 +85,8 @@ def db_init():
     cursor = mydb.cursor()
 
     cursor.execute("DROP TABLE IF EXISTS pictures")
-    cursor.execute("CREATE TABLE pictures (title VARCHAR(255), price INTEGER, active BOOLEAN, description VARCHAR(255))")
+    cursor.execute("CREATE TABLE pictures (title VARCHAR(255), price INTEGER, "
+                   "active BOOLEAN, description VARCHAR(255))")
     cursor.close()
     return 'init database'
 
