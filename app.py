@@ -22,21 +22,17 @@ def create():
         host="mysqldb",
         user="root",
         password="password",
-        database="inventory",
-        table='pictures'
+        database="inventory"
     )
     cursor = mydb.cursor()
     if request.method == 'POST':
         title = request.form['title']
         price = request.form['price']
         text = request.form['text']
-        try:
-            cursor.execute("INSERT INTO TABLE pictures(title, price, active, description)"
-                           f"VALUES({title}, {price}, {True}, {text}")
-            cursor.close()
-            return redirect('/')
-        except:
-            return 'Что-то пошло не так, проверьте правильность заполняемых данных'
+        cursor.execute("INSERT INTO TABLE pictures(title, price, active, description)"
+                       f"VALUES({title}, {price}, {True}, {text}")
+        cursor.close()
+        return redirect('/')
     else:
         return render_template('create.html')
 
