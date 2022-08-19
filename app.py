@@ -4,7 +4,7 @@ import mysql.connector
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///DSsite.db'
+'''app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///DSsite.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -14,7 +14,7 @@ class Pictures(db.Model):
     title = db.Column(db.String(50), nullable=False)
     price = db.Column(db.Integer, nullable=False)
     active = db.Column(db.Boolean, default=True)
-    text = db.Column(db.Text, nullable=False)
+    text = db.Column(db.Text, nullable=False)'''
 
 
 @app.route('/')
@@ -27,7 +27,7 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/create', methods=['POST', 'GET'])
+'''@app.route('/create', methods=['POST', 'GET'])
 def create():
     if request.method == 'POST':
         title = request.form['title']
@@ -41,7 +41,7 @@ def create():
         except:
             return 'Что-то пошло не так, проверьте правильность заполняемых данных'
     else:
-        return render_template('create.html')
+        return render_template('create.html')'''
 
 
 @app.route('/pictures')
@@ -53,7 +53,7 @@ def get_widgets():
         database="inventory"
     )
     cursor = mydb.cursor()
-    cursor.execute("SELECT * FROM widgets")
+    cursor.execute("SELECT * FROM pictures")
     row_headers = [x[0] for x in cursor.description]
     results = cursor.fetchall()
     json_data = []
@@ -68,7 +68,7 @@ def db_init():
     mydb = mysql.connector.connect(
         host="mysqldb",
         user="root",
-        password="p@ssw0rd1"
+        password="password"
     )
     cursor = mydb.cursor()
 
