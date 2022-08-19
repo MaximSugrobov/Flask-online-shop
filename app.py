@@ -29,10 +29,15 @@ def create():
         title = request.form['title']
         price = request.form['price']
         text = request.form['text']
-        cursor.execute("INSERT INTO TABLE pictures(title, price, active, description)"
-                       f"VALUES({title}, {price}, {True}, {text}")
-        cursor.close()
-        return redirect('/')
+        try:
+            sql = "INSERT INTO pictures(title, price, active, description) VALUES (%s, %s, %s, %s)"
+            val = (title, price, True, text)
+            cursor.execute(sql, val)
+            mydb.commit()
+            cursor.close()
+            return redirect('/')
+        except:
+            return 'Something went wrong, check all boxes to be filled'
     else:
         return render_template('create.html')
 
